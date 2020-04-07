@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
+import QuestionsMap from './QuestionsMap';
 
 
 function FetchQuestions() {
@@ -10,7 +11,7 @@ function FetchQuestions() {
 
     const fetchAllQuestions = async () => {
         try {
-            const response = await fetch(url + '/question/all');
+            const response = await fetch(url + '/kysymys/all');
             const json = await response.json();
             setQuestions(json);
             setErr('');
@@ -31,7 +32,7 @@ function FetchQuestions() {
         if (questions.length > 0) {
         return (
         <div>
-            <p>JEEEEEE</p>
+            <QuestionsMap questions = { questions } />
         </div>
         )
     }
