@@ -5,13 +5,13 @@ import QuestionsMap from './QuestionsMap';
 
 function FetchQuestions() {
 
-    const url = "http://localhost:8080";
+    const url = "https://surveyapp-backend.herokuapp.com/questions";
     const [questions, setQuestions] = useState([]);
     const [err, setErr] = useState('Haetaan');
 
     const fetchAllQuestions = async () => {
         try {
-            const response = await fetch(url + '/kysymys/all');
+            const response = await fetch(url);
             const json = await response.json();
             setQuestions(json);
             setErr('');
