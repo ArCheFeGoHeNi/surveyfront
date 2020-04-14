@@ -6,6 +6,7 @@ import QuestionsMap from './QuestionsMap';
 function FetchQuestions() {
 
     const url = "https://surveyapp-backend.herokuapp.com/questions";
+    //Tilamuuttujat
     const [questions, setQuestions] = useState([]);
     const [err, setErr] = useState('Haetaan');
 

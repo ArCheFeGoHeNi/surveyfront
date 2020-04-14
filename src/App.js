@@ -12,8 +12,7 @@ function App() {
         <Menubaari />
         <Switch>
           <Route exact path="/" exact component={ FetchQuestions }/>
-          <Route path="/kyselyt" />
-          <Route path="/Yhteystiedot" />   
+             
         </Switch>
       </div>
     </BrowserRouter>
