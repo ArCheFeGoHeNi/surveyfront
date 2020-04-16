@@ -1,7 +1,5 @@
 import React from 'react';
-//Reititys
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
-
+import { BrowserRouter, Route, Switch} from 'react-router-dom'; //Reititys
 import Menubaari from './navigaatio/Menubaari';
 import FetchQuestions from './components/FetchQuestions';
 
