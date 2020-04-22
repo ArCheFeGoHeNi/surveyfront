@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom'; //Reititys
 import Menubaari from './navigaatio/Menubaari';
 import FetchQuestions from './components/FetchQuestions';
+import PostTest from './components/PostTest';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Menubaari />
         <Switch>
           <Route exact path="/" exact component={ FetchQuestions }/>
+          <Route exact path="/posttest" exact component={ PostTest }/>
              
         </Switch>
       </div>

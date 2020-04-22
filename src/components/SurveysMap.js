@@ -34,8 +34,8 @@ function SurveysMap(props) {
                       Kyselyn kuvaus: {surveycard.surveyDesc} <br />
                       
                     </Typography>
-                      <TextField label='Vastaus' name='vastaus' required autoFocus></TextField>
-
+                      <Button variant="contained">Valitse kysely</Button>
+                    
                   </CardContent>
                   <CardActions>
                     {/* Tähän voi tulla kysymyskohtaisia buttoneja slidereja tai jotain... */}

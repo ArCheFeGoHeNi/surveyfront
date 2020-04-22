@@ -5,17 +5,17 @@ import SurveysMap from './SurveysMap';
 
 function FetchQuestions() {
 
-    const[id, setId] = useState();
+    const[id, setId] = useState(2);
 
-    const url = ("https://surveyapp-backend.herokuapp.com/surveyslist/" + id);
-    
+    //const url = ("https://surveyapp-backend.herokuapp.com/surveyslist/" + id);
     //Tilamuuttujat
+
     const [survey, setSurvey] = useState([]);
     const [err, setErr] = useState('Haetaan');
 
     const fetchAllQuestions = async () => {
         try {
-            const response = await fetch(url);
+            const response = await fetch("https://surveyapp-backend.herokuapp.com/surveyslist/");
             const json = await response.json();
             setSurvey(json);
             setErr('');
@@ -32,14 +32,17 @@ function FetchQuestions() {
         
         if (err.length > 0) {
         return ( <Typography> { err } </Typography>);
-        }
+        } 
         if (survey.length > 0) {
         return (
-        <div>
             <SurveysMap survey = { survey } />
-        </div>
-        )
+        );
     }
+    else {
+        return(
+            <Typography>LOL</Typography>
+        );
+    } 
 }
 
 export default FetchQuestions;
