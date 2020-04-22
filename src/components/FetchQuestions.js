@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import QuestionsMap from './QuestionsMap';
+import SurveysMap from './SurveysMap';
 
 
 function FetchQuestions() {
 
-    const url = "https://surveyapp-backend.herokuapp.com/questions";
+    const[id, setId] = useState();
+
+    const url = ("https://surveyapp-backend.herokuapp.com/surveyslist/" + id);
+    
     //Tilamuuttujat
-    const [questions, setQuestions] = useState([]);
+    const [survey, setSurvey] = useState([]);
     const [err, setErr] = useState('Haetaan');
 
     const fetchAllQuestions = async () => {
         try {
             const response = await fetch(url);
             const json = await response.json();
-            setQuestions(json);
+            setSurvey(json);
             setErr('');
                 } catch (error) {
-            setQuestions([]);
+            setSurvey([]);
             setErr('Tietojen haku ei onnistunut');
                 }
             }
@@ -25,15 +28,15 @@ function FetchQuestions() {
         useEffect(() => {
         fetchAllQuestions();
             }, []);
-        console.log(questions);
+        console.log(survey);
         
         if (err.length > 0) {
         return ( <Typography> { err } </Typography>);
         }
-        if (questions.length > 0) {
+        if (survey.length > 0) {
         return (
         <div>
-            <QuestionsMap questions = { questions } />
+            <SurveysMap survey = { survey } />
         </div>
         )
     }
