@@ -12,7 +12,6 @@ import { TextField } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import ClearIcon from '@material-ui/icons/Clear';
 
-import MultipleChoiceTest from './MultipleChoiceTest';
 
 function QuestionsMap(props) {
 
@@ -46,9 +45,7 @@ function QuestionsMap(props) {
               );
             })
           }
-          <Paper elevation={2} style={{margin: '20px'}}>
-          <MultipleChoiceTest />
-          </Paper>
+         
           <div style={{margin: '10px', padding: '10px'}}>
             <Button variant="contained" color="primary"><CreateIcon />Lähetä</Button>
             <Button variant="contained" color="secondary"><ClearIcon />Tyhjennä</Button>

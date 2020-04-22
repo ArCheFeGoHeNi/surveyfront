@@ -12,7 +12,6 @@ import { TextField } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import ClearIcon from '@material-ui/icons/Clear';
 
-import MultipleChoiseTest from './MultipleChoiseTest';
 
 function SurveysMap(props) {
 
@@ -47,7 +46,7 @@ function SurveysMap(props) {
             })
           }
           <Paper elevation={2} style={{margin: '20px'}}>
-          <MultipleChoiseTest />
+          
           </Paper>
           <div style={{margin: '10px', padding: '10px'}}>
             <Button variant="contained" color="primary"><CreateIcon />Lähetä</Button>
