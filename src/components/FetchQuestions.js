@@ -11,7 +11,7 @@ function FetchQuestions() {
   const [surveyQuestions, setQuestions] = useState({});
   const [err, setErr] = useState("Haetaan");
 
-  //function to fetch data from URL
+  //function to fetch data from URL, implementing stuff later as well.
   const fetchAllQuestions = async () => {
     try {
       const response = await fetch(url);
