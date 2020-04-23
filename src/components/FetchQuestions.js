@@ -1,48 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import SurveysMap from './SurveysMap';
+import SurveysQuestionsMap from './SurveysQuestionsMap';
 
 
 function FetchQuestions() {
+    //fetching questions for a single survey
 
-    const[id, setId] = useState(2);
+    const url = ("https://surveyapp-backend.herokuapp.com/surveyslist/2");
 
-    //const url = ("https://surveyapp-backend.herokuapp.com/surveyslist/" + id);
     //Tilamuuttujat
-
-    const [survey, setSurvey] = useState([]);
+    const [surveyQuestions, Questions] = useState({});
     const [err, setErr] = useState('Haetaan');
 
     const fetchAllQuestions = async () => {
         try {
-            const response = await fetch("https://surveyapp-backend.herokuapp.com/surveyslist/");
+            const response = await fetch(url);
             const json = await response.json();
-            setSurvey(json);
+            Questions(json);
             setErr('');
                 } catch (error) {
-            setSurvey([]);
+            Questions([]);
             setErr('Tietojen haku ei onnistunut');
                 }
             }
         //useEffect: kun komponentti on latautunut -> Suoritetaan fetchAllQuestions()
         useEffect(() => {
         fetchAllQuestions();
+        console.log(surveyQuestions)
             }, []);
-        console.log(survey);
+        console.log(surveyQuestions);
         
-        if (err.length > 0) {
-        return ( <Typography> { err } </Typography>);
-        } 
-        if (survey.length > 0) {
-        return (
-            <SurveysMap survey = { survey } />
-        );
-    }
-    else {
-        return(
-            <Typography>LOL</Typography>
-        );
-    } 
+        
+    return (
+        <SurveysQuestionsMap questions = { surveyQuestions } />
+    );
+    
 }
 
 export default FetchQuestions;
