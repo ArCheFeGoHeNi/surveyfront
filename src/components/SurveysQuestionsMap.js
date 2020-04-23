@@ -9,19 +9,33 @@ import CreateIcon from "@material-ui/icons/Create";
 import ClearIcon from "@material-ui/icons/Clear";
 
 function SurveyQuestionsMap(props) {
+  //Survey Object
   const [surveyObj, setObj] = React.useState({});
-  const [questions, setQuestions] = React.useState([])
+  //list of questions
+  const [questions, setQuestions] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("https://surveyapp-backend.herokuapp.com/surveyslist/2")
+    fetch("https://surveyapp-backend.herokuapp.com/surveyslist/3")
       .then((response) => response.json())
-      .then((json) => setObj(json));
-
-      setQuestions(surveyObj.questionList)
+      .then((json) => {
+        setObj(json);
+        setQuestions(json.questionList);
+      });
   }, []);
 
-return <div>{console.log(surveyObj.questionList)}</div>
-  
+  return (
+    <div>
+      {console.log(questions[0])}
+      {questions.map((question) => {
+        return (
+          <div key={question.questionID}>
+            <p>{question.questionText}</p>
+            <input type="text"></input>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default SurveyQuestionsMap;
