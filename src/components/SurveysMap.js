@@ -1,14 +1,6 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Card from '@material-ui/core/Card';
-import Grid from '@material-ui/core/Grid';
-import { CardContent, CardHeader, CardActions } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import { TextField } from '@material-ui/core';
+import { Typography, Paper, Container, Button, TextField, Grid, List, ListItem } from '@material-ui/core';
+import { Card, CardContent, CardHeader, CardActions } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import ClearIcon from '@material-ui/icons/Clear';
 
@@ -19,7 +11,7 @@ function SurveysMap(props) {
     return(
         <div>
         <Paper elevation={2} style={{margin: '20px'}}>
-        <Typography variant={"h1"} style={{margin: '20px'}}>Kyselyt</Typography>
+        <Typography variant={"h1"} style={{margin: '20px', textAlign: 'center'}}>Valitse Kysely</Typography>
     
 
             { props.survey.map(surveycard => {
@@ -34,7 +26,7 @@ function SurveysMap(props) {
                       Kyselyn kuvaus: {surveycard.surveyDesc} <br />
                       
                     </Typography>
-                      <Button variant="contained">Valitse kysely</Button>
+                      <Button variant="outlined" color="primary" style={{margin:"10px"}}>Valitse</Button>
                     
                   </CardContent>
                   <CardActions>

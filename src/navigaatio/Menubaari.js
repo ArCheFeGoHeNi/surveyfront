@@ -48,7 +48,7 @@ const SecondaryMenu =
             <AppBar position='static'>
                 <Toolbar>
                     <IconButton onClick={ handleOpen } color='inherit'><MenuIcon /></IconButton>
-                    <Typography variant='h5' style={ {textAlign: 'center', flexGrow: '1'} }>Kyselyapplikaatio By: ArCheFeGoHeNi</Typography>
+                    <Typography variant='h5' style={ {textAlign: 'center', flexGrow: '1'} }>Kyselypalvelu</Typography>
                     <IconButton color='inherit' onClick={ handlePersonMenu }> <AccountCircleIcon /> </IconButton>
                 </Toolbar>
                   <Drawer anchor='left' open={ open } onClick={ handleClose }>
