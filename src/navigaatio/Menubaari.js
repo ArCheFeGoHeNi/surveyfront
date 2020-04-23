@@ -18,6 +18,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import ContactsIcon from '@material-ui/icons/Contacts';
+import { Link } from 'react-router-dom';
 
 function Menubaari() {
 
@@ -65,9 +66,9 @@ const SecondaryMenu =
                         <ListItemIcon><HomeIcon /></ListItemIcon>
                         <ListItemText primary='Jotain' />
                       </ListItem>
-                      <ListItem button >
+                      <ListItem button component={ Link } to ='/posttest' >
                         <ListItemIcon><ContactsIcon /></ListItemIcon>
-                        <ListItemText primary='Jotain' />
+                        <ListItemText primary='Post Test' />
                       </ListItem>
                     </List>
                   </Drawer>
