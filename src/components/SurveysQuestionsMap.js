@@ -1,57 +1,27 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
-import Card from '@material-ui/core/Card';
-import { CardContent, CardHeader, CardActions } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import CreateIcon from '@material-ui/icons/Create';
-import ClearIcon from '@material-ui/icons/Clear';
-
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import Container from "@material-ui/core/Container";
+import Card from "@material-ui/core/Card";
+import { CardContent, CardHeader, CardActions } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import CreateIcon from "@material-ui/icons/Create";
+import ClearIcon from "@material-ui/icons/Clear";
 
 function SurveyQuestionsMap(props) {
+  const [surveyObj, setObj] = React.useState({});
+  const [questions, setQuestions] = React.useState([])
 
-    
-    return(
-        <div>
-        <Paper elevation={2} style={{margin: '20px'}}>
-        <Typography variant={"h1"} style={{margin: '20px'}}>Kyselyt</Typography>
-    
+  React.useEffect(() => {
+    fetch("https://surveyapp-backend.herokuapp.com/surveyslist/2")
+      .then((response) => response.json())
+      .then((json) => setObj(json));
 
-            { props.questions.map(card => {
-              console.log("hello" + props.questions)
-              return(
-              <Container>
-                <Card key={card.surveyId} style={{margin:'15px'}} elevation={3}>
-                  <CardHeader title={card.surveyName}>
-                    
-                  </CardHeader>
-                  <CardContent>
-                    <Typography>
-                      Kyselyn kuvaus: {card.surveyDesc} <br />
-                      
-                    </Typography>
-                      <Button variant="contained">Valitse kysely</Button>
-                    
-                  </CardContent>
-                  <CardActions>
-                    {/* Tähän voi tulla kysymyskohtaisia buttoneja slidereja tai jotain... */}
-                  </CardActions>
-                </Card>
-              </Container>
-              );
-            })
-          }
-          <Paper elevation={2} style={{margin: '20px'}}>
-          
-          </Paper>
-          <div style={{margin: '10px', padding: '10px'}}>
-            <Button variant="contained" color="primary"><CreateIcon />Lähetä</Button>
-            <Button variant="contained" color="secondary"><ClearIcon />Tyhjennä</Button>
-          </div>
-        </Paper>
-        </div>
-    )
-  }
+      setQuestions(surveyObj.questionList)
+  }, []);
+
+return <div>{console.log(surveyObj.questionList)}</div>
   
+}
+
 export default SurveyQuestionsMap;

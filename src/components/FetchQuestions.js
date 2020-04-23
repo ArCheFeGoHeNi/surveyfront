@@ -8,33 +8,37 @@ function FetchQuestions() {
 
     const url = ("https://surveyapp-backend.herokuapp.com/surveyslist/2");
 
-    //Tilamuuttujat
-    const [surveyQuestions, Questions] = useState({});
+   //Tilamuuttujat
+    const [surveyQuestions, setQuestions] = useState({});
+
     const [err, setErr] = useState('Haetaan');
+
 
     const fetchAllQuestions = async () => {
         try {
             const response = await fetch(url);
             const json = await response.json();
-            Questions(json);
+            setQuestions(json);
             setErr('');
                 } catch (error) {
-            Questions([]);
+            setQuestions([]);
             setErr('Tietojen haku ei onnistunut');
                 }
             }
         //useEffect: kun komponentti on latautunut -> Suoritetaan fetchAllQuestions()
         useEffect(() => {
         fetchAllQuestions();
-        console.log(surveyQuestions)
-            }, []);
-        console.log(surveyQuestions);
         
+            }, []);
         
     return (
+        <div>
+        
         <SurveysQuestionsMap questions = { surveyQuestions } />
+        </div>
     );
     
+
 }
 
 export default FetchQuestions;

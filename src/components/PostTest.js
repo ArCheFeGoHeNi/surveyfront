@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TextField, Button, Paper, Typography } from '@material-ui/core';
 
 function PostTest() {
     const[answer, setAnswer] = useState("");
-    const[virhe, setVirhe] = useState("");
+
 
     const muuta = (e) => {
         setAnswer({

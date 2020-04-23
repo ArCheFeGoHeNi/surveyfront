@@ -10,8 +10,8 @@ function App() {
       <div className="App">
         <Menubaari />
         <Switch>
-          <Route exact path="/" exact component={ FetchQuestions }/>
-          <Route exact path="/posttest" exact component={ PostTest }/>
+          <Route exact path="/" component={ FetchQuestions }/>
+          <Route exact path="/posttest" component={ PostTest }/>
              
         </Switch>
       </div>
