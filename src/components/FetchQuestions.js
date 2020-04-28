@@ -9,7 +9,8 @@ function FetchQuestions() {
 
   //Tilamuuttujat
   const [surveyQuestions, setQuestions] = useState({});
-  const [err, setErr] = useState("Haetaan");
+  const [err, setErr] = useState("Searching...");
+
 
   //function to fetch data from URL, implementing stuff later as well.
   const fetchAllQuestions = async () => {
@@ -20,7 +21,7 @@ function FetchQuestions() {
       setErr("");
     } catch (error) {
       setQuestions([]);
-      setErr("Tietojen haku ei onnistunut");
+      setErr("Could not get the required data. Try again...");
     }
   };
   //useEffect: kun komponentti on latautunut -> Suoritetaan fetchAllQuestions()
@@ -30,7 +31,7 @@ function FetchQuestions() {
 
   return (
     <div>
-      <SurveysQuestionsMap questions={surveyQuestions} />
+      <SurveysQuestionsMap questions={surveyQuestions} /> 
     </div>
   );
 }
