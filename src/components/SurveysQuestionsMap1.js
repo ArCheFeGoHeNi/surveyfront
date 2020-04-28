@@ -9,7 +9,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import ClearIcon from "@material-ui/icons/Clear";
 import { TextField } from '@material-ui/core';
 
-function SurveyQuestionsMap() {
+function SurveyQuestionsMap1() {
   //Survey Object
   const [surveyObj, setObj] = React.useState({});
   //list of questions
@@ -29,7 +29,7 @@ function SurveyQuestionsMap() {
 }
 
   React.useEffect(() => {
-    fetch("https://surveyapp-backend.herokuapp.com/surveyslist/3")
+    fetch("https://surveyapp-backend.herokuapp.com/surveyslist/2")
       .then((response) => response.json())
       .then((json) => {
         setObj(json);
@@ -83,4 +83,4 @@ function SurveyQuestionsMap() {
   );
 }
 
-export default SurveyQuestionsMap;
+export default SurveyQuestionsMap1;
