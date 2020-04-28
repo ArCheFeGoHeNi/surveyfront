@@ -1,7 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
@@ -12,10 +11,10 @@ export default function SurveysPage() {
 
   //fetching survey data with "useEffect" from URL
   React.useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setSurveys(data);
+    fetch(url) // fetches url as raw data
+      .then((response) => response.json()) // changes the data format to JSON
+      .then((data) => { // do what you want with the JSON data
+        setSurveys(data); // sets the state as the JSON data (list of survey objects)
       });
   }, []);
 
