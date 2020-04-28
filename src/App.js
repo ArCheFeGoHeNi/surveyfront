@@ -4,6 +4,8 @@ import Menubaari from './navigaatio/Menubaari';
 import FetchQuestions from './components/FetchQuestions';
 import PostTest from './components/PostTest';
 import SurveysPage from "./components/SurveysPage"
+import SurveyQuestions2 from "./components/SurveysQuestions2"
+import SurveyQuestionsMap2 from './components/SurveysQuestions2';
 
 function App() {
   return (
@@ -11,13 +13,13 @@ function App() {
       <div className="App">
         <Menubaari />
         <Switch>
-          <Route exact path="/" component={ FetchQuestions }/>
+          <Route exact path="/" component={ SurveysPage }/>
           <Route exact path="/posttest" component={ PostTest }/>
-          <Route path="/survey"/> {/*WIP*/ }
+          <Route path="/survey" component={SurveyQuestionsMap2}/>
           
              
         </Switch>
-        <SurveysPage/> {/*testibois*/}
+        
       </div>
     </BrowserRouter>
   );

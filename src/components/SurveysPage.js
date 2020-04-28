@@ -21,9 +21,13 @@ export default function SurveysPage() {
 
   return (
     <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
+        <Typography variant={"h3"}>Surveys</Typography>
+        <br/>
       {surveys.map((survey) => {
         return (
           <div key={survey.surveyId}>
+              
+
             <Paper style={{ padding: "10px" }} elevation={3}>
               <Typography variant={"h4"}>{survey.surveyName}</Typography>
               <Typography>{survey.surveyDesc}</Typography>
