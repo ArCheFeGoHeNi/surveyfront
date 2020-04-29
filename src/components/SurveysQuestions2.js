@@ -1,26 +1,32 @@
 import React, { useState } from "react";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
-import { CardContent, CardHeader, CardActions } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-
-import { TextField } from "@material-ui/core";
+import { TextField, Typography } from "@material-ui/core";
 
 function SurveyQuestionsMap2() {
   //Survey Object
   const [surveyObj, setObj] = React.useState({});
   //list of questions
   const [questions, setQuestions] = React.useState([]);
+  //rename??
   const [virhe, setVirhe] = useState("");
-
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
-  //const[answer1, setAnswer1] = useState('');
 
   const change = (e) => {
-    // targets the answerText of a single answer object
+    const questionID = parseInt(e.target.name);
+    const newArr = [];
+
+    answers.forEach((answer) => {
+      if (answer.questionID === questionID) {
+        const newObj = { questionID: questionID, answerText: e.target.value };
+        newArr.push(newObj);
+      } else {
+        newArr.push(answer);
+      }
+    });
+
+    setAnswers(newArr);
   };
 
   React.useEffect(() => {
@@ -32,6 +38,33 @@ function SurveyQuestionsMap2() {
         createAnswerObjects(json.questionList);
       });
   }, []);
+
+  //function to make sure that the app wont try to render undefined items
+  //from an empty array.
+  //renders ONLY IF answers has content in it
+  const renderTextField = (i, questionID) => {
+    const id = questionID + "";
+    const listIndex = i + "";
+
+    if (answers.length > 0) {
+      return (
+        <div>
+          {console.log(answers)}
+          <TextField
+            label="Input an answer..."
+            id={listIndex}
+            name={id}
+            onChange={change}
+            margin="normal"
+            required
+            autoFocus
+            fullWidth
+            variant="outlined"
+          />
+        </div>
+      );
+    }
+  };
 
   // like the function says, it creates answer objects as many
   // as the parameter suggests, and saves it to the "answers" state
@@ -50,7 +83,6 @@ function SurveyQuestionsMap2() {
 
   const sendInformation = (e) => {
     setVirhe("Sending information...");
-    console.log(answers);
     fetch("http://localhost:8080/answer", {
       method: "POST",
       headers: {
@@ -71,24 +103,28 @@ function SurveyQuestionsMap2() {
   };
 
   return (
-    <Paper style={{ textAlign: "center" }}>
-      {console.log(answers)} {/*TEST*/}
+    <Paper style={{ textAlign: "center", width: "85%", margin: "auto" }}>
+      <Typography
+        variant="h4"
+        style={{ marginTop: "20px", marginBottom: "20px" }}
+      >
+        {surveyObj.surveyName}
+      </Typography>
       <div>
         <form>
           {questions.map((question, i) => {
             return (
-              <div key={question.questionID} style={{ margin: "auto" }}>
-                <p>{question.questionText}</p>
-                <TextField
-                  label="Input an answer..."
-                  name="answerText"
-                  value="{answers[i]}"
-                  onChange={(e) => change(e)}
-                  margin="normal"
-                  required
-                  autoFocus
-                  fullWidth
-                />
+              <div
+                key={question.questionID}
+                style={{ padding: "7px", margin: "auto", width: "70%" }}
+              >
+                <div style={{ textAlign: "left" }}>
+                  <h4 style={{ marginBottom: "0px" }}>
+                    {question.questionText}
+                  </h4>
+                  {renderTextField(i, question.questionID)}
+                  <br />
+                </div>
               </div>
             );
           })}
