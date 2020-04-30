@@ -4,13 +4,13 @@ import Button from "@material-ui/core/Button";
 import { TextField, Typography } from "@material-ui/core";
 import { useParams } from "react-router";
 
-function SurveyQuestionsMap2() {
+function SurveyQuestions() {
   //Survey Object
   const [surveyObj, setObj] = React.useState({});
   //list of questions
   const [questions, setQuestions] = React.useState([]);
   //rename??
-  const [virhe, setVirhe] = useState("");
+  const [message, setMessage] = useState("");
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
 
@@ -94,16 +94,39 @@ function SurveyQuestionsMap2() {
     setAnswers(AList);
   };
 
-  const sendInformation = (e) => {
-    setVirhe("Sending information...");
-    fetch("http://localhost:8080/answer", {
+  const sendData = (e) => {
+    setMessage("Sending information...");
+    answers.forEach((answer) => {
+      fetch("https://surveyapp-backend.herokuapp.com/answer", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          answerText: answer.answerText,
+          question: {
+            questionID: answer.questionID,
+          },
+          respondent: {
+            respondentID: 2,
+          },
+        }),
+      });
+    });
+    setMessage("Information SENT.");
+  };
+
+  /*const sendInformation = (e) => {
+    setMessage("Sending information...");
+    fetch("https://surveyapp-backend.herokuapp.com/answer", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        answerText: answers,
+        answerText: "lul",
         question: {
           questionID: 5,
         },
@@ -112,8 +135,7 @@ function SurveyQuestionsMap2() {
         },
       }),
     });
-    setVirhe("Information SENT.");
-  };
+  };*/
 
   return (
     <Paper style={{ textAlign: "center", width: "85%", margin: "auto" }}>
@@ -144,18 +166,18 @@ function SurveyQuestionsMap2() {
           <div style={{ margin: "10px" }}>
             <Button
               variant="contained"
-              onClick={(e) => sendInformation()}
+              onClick={(e) => sendData()}
               color="primary"
               style={{ margin: "10px" }}
             >
               Post
             </Button>
           </div>
-          <p>{virhe}</p>
+          <p>{message}</p>
         </form>
       </div>
     </Paper>
   );
 }
 
-export default SurveyQuestionsMap2;
+export default SurveyQuestions;
