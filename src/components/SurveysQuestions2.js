@@ -14,8 +14,8 @@ function SurveyQuestionsMap2() {
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
 
-  let id = useParams();
-  console.log(id);
+  //id sent from SurveysPage.js
+  let id = useParams().id;
 
   //function that is executed each time an answer input changes
   const change = (e) => {
@@ -43,7 +43,7 @@ function SurveyQuestionsMap2() {
   };
 
   React.useEffect(() => {
-    fetch(`https://surveyapp-backend.herokuapp.com/surveyslist/${id.id}`)
+    fetch(`https://surveyapp-backend.herokuapp.com/surveyslist/${id}`)
       .then((response) => response.json())
       .then((json) => {
         setObj(json);
