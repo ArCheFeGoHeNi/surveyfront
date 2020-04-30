@@ -13,19 +13,28 @@ function SurveyQuestionsMap2() {
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
 
+  //function that is executed each time an answer input changes
   const change = (e) => {
+    //saves a value from the event (element's id)
     const questionID = parseInt(e.target.name);
+    //a new Array, which will be used to replace the previous answers
     const newArr = [];
 
+    //goes through the answer object array
     answers.forEach((answer) => {
+      //if the answer object is the one we're supposed to edit...
       if (answer.questionID === questionID) {
+        //creates a new answer object with the updated value from event
         const newObj = { questionID: questionID, answerText: e.target.value };
+
+        //push it to the new array
         newArr.push(newObj);
       } else {
+        //push unedited answer to the new array
         newArr.push(answer);
       }
     });
-
+    //replaces old answers with the new ones
     setAnswers(newArr);
   };
 
