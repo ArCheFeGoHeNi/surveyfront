@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { TextField, Typography } from "@material-ui/core";
+import { useParams } from "react-router";
 
 function SurveyQuestionsMap2() {
   //Survey Object
@@ -12,6 +13,9 @@ function SurveyQuestionsMap2() {
   const [virhe, setVirhe] = useState("");
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
+
+  let id = useParams();
+  console.log(id);
 
   //function that is executed each time an answer input changes
   const change = (e) => {
@@ -39,7 +43,7 @@ function SurveyQuestionsMap2() {
   };
 
   React.useEffect(() => {
-    fetch("https://surveyapp-backend.herokuapp.com/surveyslist/2")
+    fetch(`https://surveyapp-backend.herokuapp.com/surveyslist/${id.id}`)
       .then((response) => response.json())
       .then((json) => {
         setObj(json);

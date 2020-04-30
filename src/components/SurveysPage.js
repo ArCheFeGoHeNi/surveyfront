@@ -13,21 +13,19 @@ export default function SurveysPage() {
   React.useEffect(() => {
     fetch(url) // fetches url as raw data
       .then((response) => response.json()) // changes the data format to JSON
-      .then((data) => { // do what you want with the JSON data
+      .then((data) => {
+        // do what you want with the JSON data
         setSurveys(data); // sets the state as the JSON data (list of survey objects)
       });
   }, []);
 
-
   return (
     <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
-        <Typography variant={"h3"}>Surveys</Typography>
-        <br/>
+      <Typography variant={"h3"}>Surveys</Typography>
+      <br />
       {surveys.map((survey) => {
         return (
           <div key={survey.surveyId}>
-              
-
             <Paper style={{ padding: "10px" }} elevation={3}>
               <Typography variant={"h4"}>{survey.surveyName}</Typography>
               <Typography>{survey.surveyDesc}</Typography>
@@ -37,7 +35,7 @@ export default function SurveysPage() {
                 variant="contained"
                 color="primary"
                 component={Link}
-                to="/survey"
+                to={"/survey/" + survey.surveyId}
               >
                 Take Survey
               </Button>
