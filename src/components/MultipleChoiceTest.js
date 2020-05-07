@@ -1,27 +1,35 @@
 import React from 'react';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import { TextField, Typography, Paper, Button, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from '@material-ui/core';
 
-export default function MultipleChoiceTest() {
+function MultipleChoiceTest(props) {
     const [value, setValue] = React.useState('female');
-  
+    console.log(props.monivalinnat);
+    console.log(props.monivalinnat.multiAnswerOptions[0]);
     const handleChange = (event) => {
       setValue(event.target.value);
     };
-  
+
+    const multiOptions = props.monivalinnat.multiAnswerOptions;
+   
     return (
+    <div>
       <FormControl component="fieldset"  style={{margin: '20px'}}>
-        <FormLabel component="legend">Gender</FormLabel>
+        <Typography>{props.monivalinnat.questionText}</Typography>
+        <FormLabel component="legend"></FormLabel>
         <RadioGroup aria-label="gender" name="gender1" value={ value } onChange={ handleChange }>
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
-          <FormControlLabel value="other" control={<Radio />} label="Other" />
-          <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+        {multiOptions.map((option) => {
+            return(
+              <FormControlLabel value={option.multiAnswerOptionsId + " "} control={<Radio />} label={option.answerOption} />
+            )
+        }) }
         </RadioGroup>
       </FormControl>
+      <div>
+        <Button variant="contained">SUBMIT</Button>
+      </div>
+    </div>
 
     );
   }
+
+  export default MultipleChoiceTest;
