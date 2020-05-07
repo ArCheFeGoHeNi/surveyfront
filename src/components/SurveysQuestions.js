@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { TextField, Typography } from "@material-ui/core";
 import { useParams } from "react-router";
+import MultipleChoiceTest from "./MultipleChoiceTest";
 
 function SurveyQuestions() {
   //Survey Object
@@ -148,6 +149,15 @@ function SurveyQuestions() {
       <div>
         <form>
           {questions.map((question, i) => {
+            
+            if (question.questionType === "multiplechoice") {
+              const multiQuest = question;
+              return(
+                  <MultipleChoiceTest monivalinnat={multiQuest}/>
+              )
+            }
+            
+            else {
             return (
               <div
                 key={question.questionID}
@@ -161,8 +171,9 @@ function SurveyQuestions() {
                   <br />
                 </div>
               </div>
-            );
+            );}
           })}
+          
           <div style={{ margin: "10px" }}>
             <Button
               variant="contained"
