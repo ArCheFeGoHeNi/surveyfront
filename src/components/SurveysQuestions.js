@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { TextField, Typography } from "@material-ui/core";
@@ -6,9 +6,9 @@ import { useParams } from "react-router";
 
 function SurveyQuestions() {
   //Survey Object
-  const [surveyObj, setObj] = React.useState({});
+  const [surveyObj, setObj] = useState({});
   //list of questions
-  const [questions, setQuestions] = React.useState([]);
+  const [questions, setQuestions] = useState([]);
   //rename??
   const [message, setMessage] = useState("");
   //answers for each question. empty objects by default
@@ -42,7 +42,7 @@ function SurveyQuestions() {
     setAnswers(newArr);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(`https://surveyapp-backend.herokuapp.com/surveyslist/${id}`)
       .then((response) => response.json())
       .then((json) => {

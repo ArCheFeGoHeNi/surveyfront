@@ -6,21 +6,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
-
-//listat
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-
-//Ikonit
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import ContactsIcon from '@material-ui/icons/Contacts';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { Link } from 'react-router-dom';
 
-function Menubaari() {
+function Menubar() {
 
 //Drawer-valikon tilamuuttujat ja avaus/sulku
 const [open, setOpen] = useState(false);
@@ -54,7 +51,7 @@ const SecondaryMenu =
                 </Toolbar>
                   <Drawer anchor='left' open={ open } onClick={ handleClose }>
                     <List>
-                      <ListItem button component={ Link } to ='/' >
+                      <ListItem button component={ Link } to='/' >
                         <ListItemIcon><HomeIcon /></ListItemIcon>
                         <ListItemText primary='Etusivu' />
                       </ListItem>
@@ -62,21 +59,20 @@ const SecondaryMenu =
                         <ListItemIcon><MenuIcon /></ListItemIcon>
                         <ListItemText primary='Kyselyt' />
                       </ListItem>
-                      <ListItem button >
-                        <ListItemIcon><HomeIcon /></ListItemIcon>
-                        <ListItemText primary='Jotain' />
+                      <ListItem button component={ Link } to='/answers' >
+                        <ListItemIcon><QuestionAnswerIcon /></ListItemIcon>
+                        <ListItemText primary='Vastaukset' />
                       </ListItem>
-                      <ListItem button component={ Link } to ='/posttest' >
+                      <ListItem button component={ Link } to='/posttest' >
                         <ListItemIcon><ContactsIcon /></ListItemIcon>
                         <ListItemText primary='Post Test' />
                       </ListItem>
                     </List>
                   </Drawer>
-                  { SecondaryMenu } {/* Menukomponentti */}
+                  { SecondaryMenu }
             </AppBar>
         </div>
     )
-
 }
 
-export default Menubaari;
+export default Menubar;
