@@ -4,10 +4,14 @@ import Menubar from "./nav/Menubar";
 import PostTest from "./components/PostTest";
 import SurveysPage from "./components/SurveysPage";
 import SurveyQuestions from "./components/SurveysQuestions";
-import Answers from "./components/Answers";
+import AnswersPage from "./components/AnswersPage";
+
+
 
 function App() {
   return (
+    <div>
+      
     <BrowserRouter>
       <div className="App">
         <Menubar />
@@ -15,10 +19,14 @@ function App() {
           <Route exact path="/" component={SurveysPage} />
           <Route exact path="/posttest" component={PostTest} />
           <Route path="/survey/:id" component={SurveyQuestions} />
-          <Route path="/answers" component={Answers} />
+          <Route path="/answers" component={AnswersPage} /> 
+      {/*}    <Route path="answer/:id" component={SurveyAnswers} />  {*/}
         </Switch>
       </div>
     </BrowserRouter>
+    
+   </div>
+    
   );
 }
 
