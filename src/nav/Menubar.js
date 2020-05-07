@@ -52,11 +52,11 @@ const SecondaryMenu =
                 </Toolbar>
                   <Drawer anchor='left' open={ open } onClick={ handleClose }>
                     <List>
-                      <ListItem button component={ Link } to='/' >
+                      <ListItem button >
                         <ListItemIcon><HomeIcon /></ListItemIcon>
                         <ListItemText primary='Etusivu' />
                       </ListItem>
-                      <ListItem button >
+                      <ListItem button component={ Link } to='/'>
                         <ListItemIcon><MenuIcon /></ListItemIcon>
                         <ListItemText primary='Kyselyt' />
                       </ListItem>

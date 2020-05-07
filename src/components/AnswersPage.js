@@ -29,7 +29,7 @@ export default function SurveysPage() {
     <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
       <Typography variant={"h3"}>Answers</Typography>
       <br />
-      {surveys.map((survey) => {
+      {surveys.map((survey) => { // Main .map.
         return (
           <div key={survey.surveyId}>
             <Paper style={{ padding: "10px" }} elevation={3}>
@@ -43,16 +43,17 @@ export default function SurveysPage() {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>View answers boii</Typography>
+                  <Typography style={{margin:"auto"}}>View all related answers</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <Typography>
-                    {survey.questionList.map((question) => {
+                  <Typography style={{margin:"auto"}}>
+                    {survey.questionList.map((question) => { // Mapping inside the MAIN .map to get the particular question in question.
                       return (
                         <div key={question.questionID}>
                           <h4>{question.questionText}</h4>
                           <p>Answers:</p>
-                          {question.answer.map((answer) => {
+                          {question.answer.map((answer) => { // Mapping inside another .map in order to render all the answerTexts from objects
+                          // ... related to the specific question.
                             return (
                               <div key={answer.answerID}>
                                 <p>{answer.answerText}</p>
