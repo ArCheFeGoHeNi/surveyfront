@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { TextField, Typography } from "@material-ui/core";
 import { useParams } from "react-router";
-import MultipleChoiceTest from "./MultipleChoiceTest";
+import MultipleChoiceQuestion from "./MultipleChoiceQuestion";
 
 function SurveyQuestions() {
   //Survey Object
@@ -14,10 +14,18 @@ function SurveyQuestions() {
   const [message, setMessage] = useState("");
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
+  //Multiple choice answer's value
+  const [multiAnswer, setMultiAnswer] = useState("");
 
   //id sent from SurveysPage.js
   let id = useParams().id;
 
+  //Callback-function to get the value from MultipleChoice component
+  const getMultiAnswerValue = (data) => {
+    console.log(data);  
+    setMultiAnswer(data);
+    //change(data); maybe?
+  }
   //function that is executed each time an answer input changes
   const change = (e) => {
     //saves a value from the event (element's id)
@@ -91,6 +99,7 @@ function SurveyQuestions() {
         questionID: questionList[index].questionID,
         answerText: "",
       });
+      
     }
     setAnswers(AList);
   };
@@ -153,7 +162,8 @@ function SurveyQuestions() {
             if (question.questionType === "multiplechoice") {
               const multiQuest = question;
               return(
-                  <MultipleChoiceTest monivalinnat={multiQuest}/>
+                  <MultipleChoiceQuestion monivalinnat={multiQuest} callback={getMultiAnswerValue}/>
+
               )
             }
             
