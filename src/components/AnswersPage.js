@@ -43,7 +43,7 @@ export default function SurveysPage() {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>View answers nigga</Typography>
+                  <Typography>View answers boii</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   <Typography>
