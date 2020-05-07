@@ -14,6 +14,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import ContactsIcon from '@material-ui/icons/Contacts';
+import AccessibleForwardIcon from '@material-ui/icons/AccessibleForward';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { Link } from 'react-router-dom';
 
@@ -59,13 +60,13 @@ const SecondaryMenu =
                         <ListItemIcon><MenuIcon /></ListItemIcon>
                         <ListItemText primary='Kyselyt' />
                       </ListItem>
-                      <ListItem button component={ Link } to='/answers' >
-                        <ListItemIcon><QuestionAnswerIcon /></ListItemIcon>
-                        <ListItemText primary='Vastaukset' />
-                      </ListItem>
                       <ListItem button component={ Link } to='/posttest' >
                         <ListItemIcon><ContactsIcon /></ListItemIcon>
                         <ListItemText primary='Post Test' />
+                      </ListItem>
+                      <ListItem button component={ Link } to='/answers' >
+                        <ListItemIcon><AccessibleForwardIcon /></ListItemIcon>
+                        <ListItemText primary='Vastaukset' />
                       </ListItem>
                     </List>
                   </Drawer>
