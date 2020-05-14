@@ -2,17 +2,16 @@ import React from 'react';
 import { TextField, Typography, Paper, Button, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from '@material-ui/core';
 
 function MultipleChoiceQuestion(props) {
-    const [answerValue, setAnswerValue] = React.useState('');
+    const [answerValue, setAnswerValue] = React.useState({questionID: "", answerText: ""});
     //console.log(props.monivalinnat);
     //console.log(props.monivalinnat.multiAnswerOptions[0]);
     const handleChange = (event) => {
-      setAnswerValue(event.target.value);
+      setAnswerValue({questionID: props.monivalinnat.questionID, answerText: event.target.value});
     };
 
     
       const sendAnswerValue = () => {
         props.callback(answerValue);
-        console.log(answerValue);
       }
     
   /*  const sendData = (e) => {
@@ -42,12 +41,12 @@ function MultipleChoiceQuestion(props) {
       <FormControl component="fieldset"  style={{margin: '20px'}}>
         <Typography>{props.monivalinnat.questionText}</Typography>
         <FormLabel component="legend"></FormLabel>
-        <RadioGroup aria-label="gender" name="gender1" value={ answerValue } onChange={ handleChange }>
+        <RadioGroup aria-label="gender" name="gender1" value={ answerValue.answerText } onChange={ handleChange }>
         {multiOptions.map((option) => {
             return(
               <FormControlLabel value={option.answerOption + " "} control={<Radio />} label={option.answerOption} />
             )
-        }) }
+        })}
         </RadioGroup>
       </FormControl>
       <div>

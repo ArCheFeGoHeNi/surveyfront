@@ -10,21 +10,19 @@ function SurveyQuestions() {
   const [surveyObj, setObj] = useState({});
   //list of questions
   const [questions, setQuestions] = useState([]);
-  //rename??
   const [message, setMessage] = useState("");
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
   //Multiple choice answer's value
-  const [multiAnswer, setMultiAnswer] = useState("");
+  const [multiAnswer, setMultiAnswer] = useState({questionID: "", questionText: ""});
 
   //id sent from SurveysPage.js
   let id = useParams().id;
 
   //Callback-function to get the value from MultipleChoice component
   const getMultiAnswerValue = (data) => {
-    console.log(data);  
     setMultiAnswer(data);
-    //change(data); maybe?
+    console.log(multiAnswer);
   }
   //function that is executed each time an answer input changes
   const change = (e) => {
@@ -71,7 +69,6 @@ function SurveyQuestions() {
     if (answers.length > 0) {
       return (
         <div>
-          {console.log(answers)}
           <TextField
             label="Input an answer..."
             id={listIndex}
@@ -93,10 +90,10 @@ function SurveyQuestions() {
   const createAnswerObjects = (questionList) => {
     var AList = [];
 
-    for (let index = 0; index < questionList.length; index++) {
+    for (let i = 0; i < questionList.length; i++) {
       //answer contains question id and the answer text
       AList.push({
-        questionID: questionList[index].questionID,
+        questionID: questionList[i].questionID,
         answerText: "",
       });
       
