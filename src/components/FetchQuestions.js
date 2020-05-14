@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Typography from "@material-ui/core/Typography";
 import SurveysQuestionsMap from "./SurveysQuestionsMap";
 
+//unused component?
 function FetchQuestions() {
   //fetching questions for a single survey
 
