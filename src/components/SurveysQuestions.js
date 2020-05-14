@@ -13,17 +13,50 @@ function SurveyQuestions() {
   const [message, setMessage] = useState("");
   //answers for each question. empty objects by default
   const [answers, setAnswers] = useState([]);
+  const [multianswers, setMultianswers] = useState([]);
   //Multiple choice answer's value
-  const [multiAnswer, setMultiAnswer] = useState({questionID: "", questionText: ""});
 
   //id sent from SurveysPage.js
   let id = useParams().id;
 
   //Callback-function to get the value from MultipleChoice component
-  const getMultiAnswerValue = (data) => {
-    setMultiAnswer(data);
-    console.log(multiAnswer);
-  }
+  const getMultiAnswer = (data) => {
+    let tof = false;
+    const newList = [];
+
+    if (multianswers.length < 1) {
+      newList.push(data);
+    } else {
+      multianswers.forEach((answer) => {
+        //if you have already answered the question, replace
+        //answer
+        if (answer.questionID === parseInt(data.questionID)) {
+          console.log("PÖÖ");
+          tof = true;
+          newList.push(data);
+        } else {
+          console.log("JIAA");
+          newList.push(answer);
+        }
+      });
+      if (!tof) {
+        newList.push(data);
+      }
+    }
+    console.log(newList);
+    setMultianswers(newList);
+  };
+
+  const addMultiAnswersToAnswersList = () => {
+    multianswers.forEach((answer) => {
+      console.log(answer.answerText);
+      if (answer.answerText.localeCompare("") === 0) {
+      } else {
+        answers.push(answer);
+      }
+    });
+  };
+
   //function that is executed each time an answer input changes
   const change = (e) => {
     //saves a value from the event (element's id)
@@ -96,13 +129,17 @@ function SurveyQuestions() {
         questionID: questionList[i].questionID,
         answerText: "",
       });
-      
     }
     setAnswers(AList);
   };
 
   const sendData = (e) => {
+    addMultiAnswersToAnswersList();
+    console.log(answers);
+
     setMessage("Sending information...");
+
+    // console.log(answers);
     answers.forEach((answer) => {
       fetch("https://surveyapp-backend.herokuapp.com/answer", {
         method: "POST",
@@ -122,27 +159,8 @@ function SurveyQuestions() {
       });
     });
     setMessage("Information SENT.");
+    window.location.reload(true);
   };
-
-  /*const sendInformation = (e) => {
-    setMessage("Sending information...");
-    fetch("https://surveyapp-backend.herokuapp.com/answer", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        answerText: "lul",
-        question: {
-          questionID: 5,
-        },
-        respondent: {
-          respondentID: 2,
-        },
-      }),
-    });
-  };*/
 
   return (
     <Paper style={{ textAlign: "center", width: "85%", margin: "auto" }}>
@@ -155,32 +173,32 @@ function SurveyQuestions() {
       <div>
         <form>
           {questions.map((question, i) => {
-            
             if (question.questionType === "multiplechoice") {
               const multiQuest = question;
-              return(
-                  <MultipleChoiceQuestion monivalinnat={multiQuest} callback={getMultiAnswerValue}/>
-
-              )
-            }
-            
-            else {
-            return (
-              <div
-                key={question.questionID}
-                style={{ padding: "7px", margin: "auto", width: "70%" }}
-              >
-                <div style={{ textAlign: "left" }}>
-                  <h4 style={{ marginBottom: "0px" }}>
-                    {question.questionText}
-                  </h4>
-                  {renderTextField(i, question.questionID)}
-                  <br />
+              return (
+                <MultipleChoiceQuestion
+                  monivalinnat={multiQuest}
+                  callback={getMultiAnswer}
+                />
+              );
+            } else {
+              return (
+                <div
+                  key={question.questionID}
+                  style={{ padding: "7px", margin: "auto", width: "70%" }}
+                >
+                  <div style={{ textAlign: "left" }}>
+                    <h4 style={{ marginBottom: "0px" }}>
+                      {question.questionText}
+                    </h4>
+                    {renderTextField(i, question.questionID)}
+                    <br />
+                  </div>
                 </div>
-              </div>
-            );}
+              );
+            }
           })}
-          
+
           <div style={{ margin: "10px" }}>
             <Button
               variant="contained"

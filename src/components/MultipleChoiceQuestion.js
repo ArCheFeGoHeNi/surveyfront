@@ -6,33 +6,16 @@ function MultipleChoiceQuestion(props) {
     //console.log(props.monivalinnat);
     //console.log(props.monivalinnat.multiAnswerOptions[0]);
     const handleChange = (event) => {
-      setAnswerValue({questionID: props.monivalinnat.questionID, answerText: event.target.value});
+      const obj = {questionID: props.monivalinnat.questionID, answerText: event.target.value}
+      setAnswerValue(obj);
+      sendAnswerValue(obj)
+      
     };
 
     
-      const sendAnswerValue = () => {
-        props.callback(answerValue);
+      const sendAnswerValue = (obj) => {
+        props.callback(obj);
       }
-    
-  /*  const sendData = (e) => {
-      console.log(answerValue);  
-      fetch("https://surveyapp-backend.herokuapp.com/answer", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            answerText: answerValue,
-            question: {
-              questionID: props.monivalinnat.answer.questionID,
-            },
-            respondent: {
-              respondentID: 2,
-            },
-          }),
-        });
-      }; */
       
     const multiOptions = props.monivalinnat.multiAnswerOptions;
    
