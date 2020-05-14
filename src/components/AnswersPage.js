@@ -1,13 +1,10 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Answers from "./Answers";
 
 export default function SurveysPage() {
   //saves a list of survey objects
@@ -24,12 +21,12 @@ export default function SurveysPage() {
       });
   }, []);
 
-
   return (
     <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
       <Typography variant={"h3"}>Answers</Typography>
       <br />
-      {surveys.map((survey) => { // Main .map.
+      {surveys.map((survey) => {
+        // Main .map.
         return (
           <div key={survey.surveyId}>
             <Paper style={{ padding: "10px" }} elevation={3}>
@@ -43,17 +40,20 @@ export default function SurveysPage() {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography style={{margin:"auto"}}>View all related answers</Typography>
+                  <Typography style={{ margin: "auto" }}>
+                    View all related answers
+                  </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <Typography style={{margin:"auto"}}>
-                    {survey.questionList.map((question) => { // Mapping inside the MAIN .map to get the particular question in question.
+                  <Typography style={{ margin: "auto" }}>
+                    {survey.questionList.map((question) => {
+                      // This map is used to render questions
                       return (
                         <div key={question.questionID}>
                           <h4>{question.questionText}</h4>
                           <p>Answers:</p>
-                          {question.answer.map((answer) => { // Mapping inside another .map in order to render all the answerTexts from objects
-                          // ... related to the specific question.
+                          {question.answer.map((answer) => {
+                            // This map is used to render all the answers to a specific question
                             return (
                               <div key={answer.answerID}>
                                 <p>{answer.answerText}</p>
