@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Typography, Paper, Button, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from '@material-ui/core';
+import {Typography,  Button, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from '@material-ui/core';
 
 function MultipleChoiceQuestion(props) {
     const [answerValue, setAnswerValue] = React.useState({questionID: "", answerText: ""});

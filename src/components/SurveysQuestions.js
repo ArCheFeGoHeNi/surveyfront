@@ -21,35 +21,41 @@ function SurveyQuestions() {
 
   //Callback-function to get the value from MultipleChoice component
   const getMultiAnswer = (data) => {
-    let tof = false;
-    const newList = [];
+    let alreadyAnswered = false; //this is to prevent duplicate answers from being saved
+    const newList = []; //new empty array which will replace the list of multianswers
 
+    //if the list is empty...
     if (multianswers.length < 1) {
+      // if this didn't exist, iterating through the list would be impossible, because it's initially empty
       newList.push(data);
+
+      // if it's not empty...
     } else {
       multianswers.forEach((answer) => {
-        //if you have already answered the question, replace
-        //answer
         if (answer.questionID === parseInt(data.questionID)) {
-          console.log("PÖÖ");
-          tof = true;
+          //if you have already selected an answer for the question, replace answer to that question
+          // so basically this is in case you want to change your answers
+          alreadyAnswered = true;
           newList.push(data);
+
+          //if the currently iterated answer is not the one you're answering
+          //just save it to the new list as is
         } else {
-          console.log("JIAA");
           newList.push(answer);
         }
       });
-      if (!tof) {
+
+      //this code runs if you didn't changed your multiquestion answer
+      if (!alreadyAnswered) {
         newList.push(data);
       }
     }
-    console.log(newList);
     setMultianswers(newList);
   };
 
+  //this function adds the answers to multiple choice questions to the list of answers
   const addMultiAnswersToAnswersList = () => {
     multianswers.forEach((answer) => {
-      console.log(answer.answerText);
       if (answer.answerText.localeCompare("") === 0) {
       } else {
         answers.push(answer);
