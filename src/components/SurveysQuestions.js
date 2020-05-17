@@ -19,7 +19,7 @@ function SurveyQuestions() {
   //id sent from SurveysPage.js
   let id = useParams().id;
 
-  //Callback-function to get the value from MultipleChoice component
+  //Callback-function to get the data from MultipleChoice component
   const getMultiAnswer = (data) => {
     let alreadyAnswered = false; //this is to prevent duplicate answers from being saved
     const newList = []; //new empty array which will replace the list of multianswers
