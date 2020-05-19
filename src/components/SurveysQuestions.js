@@ -183,7 +183,7 @@ function SurveyQuestions() {
       });
     });
     setMessage("Information SENT.");
-    window.location.reload(true);
+    //window.location.reload(true);
   };
 
   return (
@@ -200,7 +200,7 @@ function SurveyQuestions() {
             if (question.questionType === "multiplechoice") {
               const multiQuest = question;
               return (
-                <MultipleChoiceQuestion
+                <MultipleChoiceQuestion key={question.idquestionID}
                   monivalinnat={multiQuest}
                   callback={getMultiAnswer}
                 />
@@ -224,16 +224,18 @@ function SurveyQuestions() {
           })}
 
           <div style={{ margin: "10px" }}>
+          <b><p>{message}</p></b>
             <Button
               variant="contained"
               onClick={(e) => sendData()}
               color="primary"
               style={{ margin: "10px" }}
+              
             >
               Post
             </Button>
           </div>
-          <p>{message}</p>
+          
         </form>
       </div>
     </Paper>

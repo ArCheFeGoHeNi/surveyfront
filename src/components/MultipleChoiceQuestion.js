@@ -33,7 +33,7 @@ function MultipleChoiceQuestion(props) {
         </RadioGroup>
       </FormControl>
       <div>
-        <Button variant="contained" onClick={(e) => sendAnswerValue()}>TESTISUBMIT</Button>
+       {/* <Button variant="contained" onClick={(e) => sendAnswerValue()}>TESTISUBMIT</Button>*/}
       </div>
     </div>
 
