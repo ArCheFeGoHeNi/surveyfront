@@ -55,12 +55,14 @@ function SurveyQuestions() {
 
   //this function adds the answers to multiple choice questions to the list of answers
   const addMultiAnswersToAnswersList = () => {
+    const newList = [];
+
+    console.log(answers);
     multianswers.forEach((answer) => {
-      if (answer.answerText.localeCompare("") === 0) {
-      } else {
-        answers.push(answer);
-      }
+      answers.push(answer);
     });
+    console.log(newList);
+    setAnswers(newList);
   };
 
   //function that is executed each time an answer input changes
@@ -126,21 +128,37 @@ function SurveyQuestions() {
 
   // like the function says, it creates answer objects as many
   // as the parameter suggests, and saves it to the "answers" state
+  //NOTE: doesn't create answer objects for multiplechoice questions
+  //that is done seperately
   const createAnswerObjects = (questionList) => {
     var AList = [];
+    console.log(questionList);
 
-    for (let i = 0; i < questionList.length; i++) {
+    questionList.forEach((question) => {
+      console.log(question);
+      if (question.questionType.localeCompare("multiplechoice") !== 0) {
+        console.log("sisällä");
+        console.log(question);
+        AList.push({
+          questionID: question.questionID,
+          answerText: "",
+        });
+      }
+    });
+
+    /*for (let i = 0; i < questionList.length; i++) {
       //answer contains question id and the answer text
       AList.push({
         questionID: questionList[i].questionID,
         answerText: "",
       });
-    }
+    }*/
     setAnswers(AList);
   };
 
   const sendData = (e) => {
     addMultiAnswersToAnswersList();
+
     console.log(answers);
 
     setMessage("Sending information...");

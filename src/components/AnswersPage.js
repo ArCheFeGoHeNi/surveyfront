@@ -32,7 +32,7 @@ export default function SurveysPage() {
             <Paper style={{ padding: "10px" }} elevation={3}>
               <Typography variant={"h4"}>{survey.surveyName}</Typography>
               <Typography>{survey.surveyDesc}</Typography>
-              <Typography>{survey.questionList.length} answers </Typography>
+              <Typography>{survey.questionList.length} questions </Typography>
 
               <ExpansionPanel>
                 <ExpansionPanelSummary
@@ -51,7 +51,7 @@ export default function SurveysPage() {
                       return (
                         <div key={question.questionID}>
                           <h4>{question.questionText}</h4>
-                          <p>Answers:</p>
+                          <b><p>Answers:</p></b>
                           {question.answer.map((answer) => {
                             // This map is used to render all the answers to a specific question
                             return (
