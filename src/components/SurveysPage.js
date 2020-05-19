@@ -21,7 +21,7 @@ export default function SurveysPage() {
 
   return (
     <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
-      <Typography variant={"h3"}>Surveys</Typography>
+      <Typography variant={"h3"}>Kyselyt</Typography>
       <br />
       {surveys.map((survey) => {
         return (

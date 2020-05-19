@@ -23,7 +23,7 @@ export default function SurveysPage() {
 
   return (
     <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
-      <Typography variant={"h3"}>Answers</Typography>
+      <Typography variant={"h3"}>Vastaukset</Typography>
       <br />
       {surveys.map((survey) => {
         // Main .map.
