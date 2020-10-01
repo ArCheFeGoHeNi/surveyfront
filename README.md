@@ -1,3 +1,10 @@
+# Software project 1 course project - survey application
+## Surveyapplication - backend
+
+This is the repository for the frontend of the survey application. It's written in JavaScript with React.js and the Material-UI React framework.
+
+[Open the frontend UI](https://surveyappfront.herokuapp.com/).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
